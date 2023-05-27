@@ -22,7 +22,7 @@ public class BasePage {
     public BasePage() {
         try {
             prop = new Properties();
-            FileInputStream ip = new FileInputStream("C:\\Users\\Andrew\\OneDrive\\Documents\\codes\\java\\projPOM\\src\\main\\java\\com\\app\\config\\config.properties");
+            FileInputStream ip = new FileInputStream(System.getProperty("user.dir") + "\\src\\main\\java\\com\\app\\config\\config.properties");
             prop.load(ip);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -34,11 +34,11 @@ public class BasePage {
     public static void init() {
         String browser = prop.getProperty("browser");
         if (browser.equals("chrome")) {
-            System.setProperty("webdriver.chrome.driver", "C:\\Users\\Andrew\\OneDrive\\Documents\\codes\\java\\drivers\\chromedriver.exe");
+            System.setProperty("webdriver.chrome.driver",  "C:\\Users\\Andrew\\OneDrive\\Documents\\codes\\webdrivers\\chromedriver.exe");
             driver = new ChromeDriver();
         }
         else {
-            System.setProperty("webdriver.gecko.driver", "C:\\Users\\Andrew\\OneDrive\\Documents\\codes\\java\\drivers\\geckodriver.exe");
+            System.setProperty("webdriver.gecko.driver", "C:\\Users\\Andrew\\OneDrive\\Documents\\codes\\webdrivers\\geckodriver.exe");
             driver = new FirefoxDriver();
         }
         driver.manage().window().maximize();
