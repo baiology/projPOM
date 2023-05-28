@@ -23,7 +23,7 @@ public class LoginTest extends BasePage {
     @Test(priority = 1)
     public void loginTitle() {
         String title = lp.verifyLoginTitle();
-        Assert.assertEquals("Your store. Login123", title);
+        Assert.assertEquals("Your store. Login", title);
     }
 
     @Test(priority = 2)
