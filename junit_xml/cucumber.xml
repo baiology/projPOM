@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Cucumber" time="0.187" tests="1" skipped="0" failures="0" errors="0">
-<testcase classname="Validate successfull Login" name="Validate login screen" time="0.023">
+<testsuite name="Cucumber" time="5.266" tests="1" skipped="0" failures="0" errors="0">
+<testcase classname="Validate successfull Login" name="Validate login screen" time="5.155">
 <system-out><![CDATA[
 Given user is in the login screen...........................................passed
 When user enters username and password......................................passed

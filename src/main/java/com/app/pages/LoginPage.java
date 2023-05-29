@@ -1,11 +1,20 @@
 package com.app.pages;
 
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class LoginPage extends BasePage{
+import static com.app.pages.BasePage.*;
+
+public class LoginPage {
+    WebDriver driver;
+    public LoginPage(WebDriver ldriver) {
+        driver = ldriver;
+        PageFactory.initElements(driver, this);
+    }
+
     // Object Repositories
 
     @FindBy(id="Email")
@@ -18,25 +27,24 @@ public class LoginPage extends BasePage{
     WebElement login_button;
 
     //initialize the objects
-    public LoginPage() {
-        PageFactory.initElements(driver, this);
-    }
 
-    public void login(String un, String pwd) {
-        waitforElementVisibility(username);
+    public void enterUserName(String un) {
+        waitforElementVisibility(driver, username);
         username.clear();
-        username.sendKeys(prop.getProperty("user"));
-        waitforElementVisibility(password);
+        sendKeys(driver, username, un);
+    }
+
+    public void enterPassword(String pwd) {
+        waitforElementVisibility(driver, password);
         password.clear();
-        password.sendKeys(prop.getProperty("password"));
-        waitforElementVisibility(login_button);
+        sendKeys(driver, password, pwd);
+    }
+
+    public void clickLoginButton() {
+        waitforElementVisibility(driver, login_button);
+//        clickElement(driver, login_button);
         JavascriptExecutor js = (JavascriptExecutor)driver;
-        js.executeScript("arguments[0].click();", login_button);
-    }
+    	js.executeScript("arguments[0].click();", login_button);
 
-    public String verifyLoginTitle() {
-        String title = driver.getTitle();
-        return title;
     }
-
 }

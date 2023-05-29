@@ -1,5 +1,4 @@
 Feature: Validate successfull Login
-
   Scenario: Validate login screen
 
     Given user is in the login screen

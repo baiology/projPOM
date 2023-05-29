@@ -16,40 +16,18 @@ import java.util.concurrent.TimeUnit;
 
 public class BasePage {
 
-    public static WebDriver driver;
-    public static Properties prop;
     public static WebDriverWait wait;
-    public BasePage() {
-        try {
-            prop = new Properties();
-            FileInputStream ip = new FileInputStream(System.getProperty("user.dir") + "\\src\\main\\java\\com\\app\\config\\config.properties");
-            prop.load(ip);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
-    public static void init() {
-        String browser = prop.getProperty("browser");
-        if (browser.equals("chrome")) {
-            System.setProperty("webdriver.chrome.driver",  "C:\\Users\\Andrew\\OneDrive\\Documents\\codes\\webdrivers\\chromedriver.exe");
-            driver = new ChromeDriver();
-        }
-        else {
-            System.setProperty("webdriver.gecko.driver", "C:\\Users\\Andrew\\OneDrive\\Documents\\codes\\webdrivers\\geckodriver.exe");
-            driver = new FirefoxDriver();
-        }
-        driver.manage().window().maximize();
-        driver.manage().deleteAllCookies();
-        driver.manage().timeouts().pageLoadTimeout(Long.parseLong(prop.getProperty("PAGE_TIMEOUT")), TimeUnit.SECONDS);
-        driver.manage().timeouts().implicitlyWait(Long.parseLong(prop.getProperty("IMPLICIT_WAIT")), TimeUnit.SECONDS);
-        driver.get(prop.getProperty("url"));
+    public static void clickElement(WebDriver driver, WebElement element) {
+        waitforElementVisibility(driver, element);
+        element.click();
     }
-
-    public void waitforElementVisibility(WebElement el) {
+    public static void waitforElementVisibility(WebDriver driver, WebElement element) {
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.elementToBeClickable(el));
+        wait.until(ExpectedConditions.elementToBeClickable(element));
+    }
+    public static void sendKeys(WebDriver driver, WebElement element, String input) {
+        waitforElementVisibility(driver, element);
+        element.sendKeys(input);
     }
 }
