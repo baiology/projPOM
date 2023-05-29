@@ -8,6 +8,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
+import utils.ConfigReader;
 
 import java.util.Properties;
 
@@ -15,7 +16,7 @@ public class Login_SD {
     WebDriver driver;
     LoginPage lp;
     HomePage hp;
-    Properties prop = DriverFactory.getProp();
+    Properties prop = ConfigReader.initializeProperties();
 
     @Given("user is in the login screen")
     public void user_is_in_the_login_screen() {

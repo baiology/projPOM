@@ -26,17 +26,4 @@ public class DriverFactory {
     public static WebDriver getDriver() {
         return driver;
     }
-    public static Properties getProp() {
-        // get config.property values
-        try {
-            prop = new Properties();
-            FileInputStream ip = new FileInputStream(System.getProperty("user.dir") + "\\src\\test\\config.properties");
-            prop.load(ip);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return prop;
-    }
 }
